@@ -3,6 +3,7 @@
 
 # put your code here
 from os import read
+import random
 
 f = open('scores.txt', 'r')
 
@@ -14,9 +15,6 @@ for line in f:
     new_line = line.split(':')
     new_line[1] = new_line[1].strip()
     restuarant_dict['restuarants'].append({'name':f'{new_line[0]}', 'rating': float(f'{new_line[1]}')})
-
-
-
 
 def getRest():
     name = input('Enter the restuarant name: ').capitalize()
@@ -50,11 +48,20 @@ def seeRatings():
     print('')
     user_choices()
 
+def updateRating():
+    rest = random.choice(restuarant_dict['restuarants'])
+    print(f"Chosen restuarant is {rest['name']} : Rating {rest['rating']}")
+    new_rating = float(input('What should the new rating be?: '))
+    rest['rating'] = new_rating
+    print('Success \n')
+    user_choices()
+
 def user_choices():
     print('Welcome to the Restuarant Rater!')
     choice = input('''Would you like to: 
     (s) See all restuarants & ratings
     (a) Add a new restuarant
+    (u) Update random restuarant's rating
     (q) Quit \n''')
     if choice == 's':
         seeRatings()
@@ -62,6 +69,8 @@ def user_choices():
         getRest()
     elif choice == 'q':
         quit()
+    elif choice == 'u':
+        updateRating()
     else:
         print('Must pick (s), (a), or (q)\n')
         user_choices()
