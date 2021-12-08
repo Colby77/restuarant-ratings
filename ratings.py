@@ -4,20 +4,25 @@
 # put your code here
 f = open('scores.txt', 'r')
 
-restuarants = []
+restuarant_dict = {
+    'restuarants' : []
+}
 
 for line in f:
     new_line = line.split(':')
-    restuarants.append({'name':f'{new_line[0]}', 'rating': f'{new_line[1]}'})
-    # for word in new_line:
-    #     word = word.replace('\n', '2')
+    # print(new_line)
+    new_line[1] = new_line[1].strip()
+    # print(new_line)
+    # new_line = line.split(':')
+    # print(new_line)
+    restuarant_dict['restuarants'].append({'name':f'{new_line[0]}', 'rating': f'{new_line[1]}'})
     # print(new_line)
 
-for r in restuarants:
-    # print(f'{r['name']}', f'{r['rating']}', sep=':')
-    print(r['name'] + ':' + r['rating'])
 
-# x = restuarants.items()
+for r in restuarant_dict['restuarants']:
+    print(r.items())
+
+# x = restuarant_dict['restuarants'].items()
 # print(x)
 # print(restuarants)
 # print(f.read())
