@@ -1,0 +1,11 @@
+McDonald's:4
+Domino's:3
+Mi Rancherito:5
+Polar Queen:4
+Taco Bell:3
+Taco Time:2
+Little Caesar's:4
+Fat Jack's:5
+Don Chuy's:4
+Beto's:3
+Subway:1

@@ -2,19 +2,25 @@
 
 
 # put your code here
-from os import read
+# from os import read
+import os
+import sys
 import random
+path = ''
+dirs = os.listdir(path)
 
-f = open('scores.txt', 'r')
+
+
+# f = open('scores.txt', 'r')
 
 restuarant_dict = {
     'restuarants' : []
 }
 
-for line in f:
-    new_line = line.split(':')
-    new_line[1] = new_line[1].strip()
-    restuarant_dict['restuarants'].append({'name':f'{new_line[0]}', 'rating': float(f'{new_line[1]}')})
+# for line in f:
+#     new_line = line.split(':')
+#     new_line[1] = new_line[1].strip()
+#     restuarant_dict['restuarants'].append({'name':f'{new_line[0]}', 'rating': float(f'{new_line[1]}')})
 
 def getRest():
     name = input('Enter the restuarant name: ').capitalize()
@@ -81,4 +87,22 @@ def user_choices():
         print('Must pick (s), (a), or (q)\n')
         user_choices()
 
-user_choices()
+def select_file():
+    for file in dirs:
+        if file.endswith('.txt'):
+            print(file)
+    print('Welcome to the Python Rating Program!')
+    choice = input('Select a file to use or type "other" to upload a file:\n')
+    if choice == 'other':
+        path = input('Enter the path of the file to use:\n')
+        f = open(f'{path}', 'r')
+    else:
+        f = open(f'{choice}', 'r')
+    for line in f:
+        new_line = line.split(':')
+        new_line[1] = new_line[1].strip()
+        restuarant_dict['restuarants'].append({'name':f'{new_line[0]}', 'rating': float(f'{new_line[1]}')})
+    print(f'{choice} selected')
+    print('')
+    user_choices()
+select_file()
