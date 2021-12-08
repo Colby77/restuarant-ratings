@@ -15,6 +15,9 @@ for line in f:
     new_line[1] = new_line[1].strip()
     restuarant_dict['restuarants'].append({'name':f'{new_line[0]}', 'rating': float(f'{new_line[1]}')})
 
+
+
+
 def getRest():
     name = input('Enter the restuarant name: ').capitalize()
     rating = (input('Enter your rating for the restuarant: '))
@@ -36,14 +39,31 @@ def is_input(rating):
 
 def createRest(name, rating):
     restuarant_dict['restuarants'].append({'name':f'{name}', 'rating': f'{rating}'})
+    print('Restuarant Added! \n')
+    user_choices()
 
-new_rest = input('Have a restuarant to add? (y/n) ')
+def seeRatings():
+    restuarant_dict['restuarants'] = sorted(restuarant_dict['restuarants'], key=lambda k: k['name'])
+    print('Here are the restuarants and their ratings:\n')
+    for r in restuarant_dict['restuarants']:
+        print(f"{r['name']} is rated at {r['rating']}")
+    print('')
+    user_choices()
 
-if new_rest == 'y':
-    getRest()
+def user_choices():
+    print('Welcome to the Restuarant Rater!')
+    choice = input('''Would you like to: 
+    (s) See all restuarants & ratings
+    (a) Add a new restuarant
+    (q) Quit \n''')
+    if choice == 's':
+        seeRatings()
+    elif choice == 'a':
+        getRest()
+    elif choice == 'q':
+        quit()
+    else:
+        print('Must pick (s), (a), or (q)\n')
+        user_choices()
 
-restuarant_dict['restuarants'] = sorted(restuarant_dict['restuarants'], key=lambda k: k['name'])
-
-print('Here are the restuarants and their ratings:\n')
-for r in restuarant_dict['restuarants']:
-    print(f"{r['name']} is rated at {r['rating']}")
+user_choices()
