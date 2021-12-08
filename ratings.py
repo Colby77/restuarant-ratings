@@ -49,11 +49,17 @@ def seeRatings():
     user_choices()
 
 def updateRating():
-    rest = random.choice(restuarant_dict['restuarants'])
-    print(f"Chosen restuarant is {rest['name']} : Rating {rest['rating']}")
-    new_rating = float(input('What should the new rating be?: '))
+    for r in restuarant_dict['restuarants']:
+        print(r['name'])
+    choice = input('What restuarant would you like to update: ')
+    for n in restuarant_dict['restuarants']:
+        if n['name'] == choice:
+            rest = n
+            print(f"{n['name']} has a rating of {n['rating']}")
+            break
+    new_rating = float(input('What do you want to rate it?: '))
     rest['rating'] = new_rating
-    print('Success \n')
+    print('Success\n')
     user_choices()
 
 def user_choices():
