@@ -16,11 +16,12 @@ def select_file():
     for file in dirs:
         if file.endswith('.txt'):
             print(file)
+    print('')
     print('Welcome to the Python Rating Program!')
     choice = input('Select a file to use or type "other" to upload a file:\n')
     if choice == 'other':
-        path = input('Enter the path of the file to use:\n')
-        f = open(f'{path}', 'r')
+        choice = input('Enter the path of the file to use:\n')
+        f = open(f'{choice}', 'r')
     else:
         f = open(f'{choice}', 'r')
     for line in f:
@@ -37,6 +38,7 @@ def user_choices():
     (s) See all restuarants & ratings
     (a) Add a new restuarant
     (u) Update random restuarant's rating
+    (p) Pick a new file
     (q) Quit \n''')
     if choice == 's':
         seeRatings()
@@ -46,6 +48,8 @@ def user_choices():
         quit()
     elif choice == 'u':
         updateRating()
+    elif choice == 'p':
+        select_file()
     else:
         print('Must pick (s), (a), or (q)\n')
         user_choices()
